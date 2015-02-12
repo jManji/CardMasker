@@ -3,9 +3,9 @@
 -----------------------------
 Bank details:
 Bank	Card number	Expiry date
-HSBC Canada	5601-2345-3446-5678	Nov-2017
-Royal Bank of Canada 4519-4532-4524-2456	Oct-2017
-American Express	3786-7334-8965-345	Dec-2018
+HSBC Canada          5601-2345-3446-5678  Nov-2017
+Royal Bank of Canada 4519-4532-4524-2456  Oct-2017
+American Express     3786-7334-8965-345	  Dec-2018
 
 Use the information provided above, write a programme that will output the data based on the criteria provided below:
 1.	Sort the data by Expiry date in descending order
@@ -18,7 +18,7 @@ Card number	Masked card number
 --------------------
 -- How to run it  --
 --------------------
-A an executable jar is provided along with the source. The application takes the bank details as parameters, and outputs the results. Each parameter should be a csv, composed of the bank name, the card number and the expriry date. And example of how to use it is the following:
+A an executable jar is provided in jar director. The application takes the bank details as parameters, and outputs the results. Each parameter should be a csv string, composed of the bank name, the card number and the expriry date. An demonstration of how to use it is the following:
 
 C:\Users\someuser\CardMasker> java -jar jar\cardmasker.jar "HSBC Canada,5601-2345-3446-5678,Nov-2017" "Royal Bank of Canada,4519-4532-4524-2456,Oct-2017" "American Express,3786-7334-8965-345,Dec-2018"
 
@@ -33,6 +33,9 @@ The above is also provided as an example, in example.bat which you can run.
 ------------------
 You should have ant installed. Then go to the application root directory and do:
 C:\Users\someuser\CardMasker> ant
+
+If you want to recreate the jar, do:
+C:\Users\someuser\CardMasker> ant build-jar
 
 ----------------------
 -- How to run tests --
