@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="CardNumberMasker">
+    <property environment="env"/>
+    <property name="junit.output.dir" value="junit"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
+    <path id="JUnit 4.libraryclasspath">
+        <pathelement location="../../../../Program Files/eclipse/plugins/org.junit_4.11.0.v201303080030/junit.jar"/>
+        <pathelement location="../../../../Program Files/eclipse/plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
+    </path>
+    <path id="CardNumberMasker.classpath">
+        <pathelement location="bin"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="test">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <src path="test"/>
+            <classpath refid="CardNumberMasker.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target name="BCSGApplication">
+        <java classname="com.bcsg.BCSGApplication" failonerror="true" fork="yes">
+            <arg line="&quot;HSBC Canada,5601-2345-3446-5678,Nov-2017&quot;&#13;&#10;&quot;Royal Bank of Canada,4519-4532-4524-2456,Oct-2017&quot;&#13;&#10;&quot;American Express,3786-7334-8965-345,Dec-2018&quot;"/>
+            <classpath refid="CardNumberMasker.classpath"/>
+        </java>
+    </target>
+    <target name="test">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="com.bcsg.AllTests" todir="${junit.output.dir}"/>
+            <test name="com.bcsg.card.CardManagerTest" todir="${junit.output.dir}"/>
+            <test name="com.bcsg.card.CardTest" todir="${junit.output.dir}"/>
+            <test name="com.bcsg.cardmasker.CardMaskerTest" todir="${junit.output.dir}"/>
+            <test name="com.bcsg.cardvalidator.CardValidatorTest" todir="${junit.output.dir}"/>
+            <classpath refid="CardNumberMasker.classpath"/>
+        </junit>
+    </target>
+    <target name="AllTests (2)">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="com.bcsg.AllTests" todir="${junit.output.dir}"/>
+            <classpath refid="CardNumberMasker.classpath"/>
+        </junit>
+    </target>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
+    </target>
+	
+	<target name="build-jar">
+		<jar destfile = "jar/cardmasker.jar"
+			basedir = "bin"
+			includes = "com/bcsg/**">
+		   <manifest>
+			  <attribute name = "Main-Class" value = "com.bcsg.BCSGApplication"/>
+		   </manifest>
+		</jar>
+	</target>
+	
+</project>

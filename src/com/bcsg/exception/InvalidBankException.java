@@ -1,0 +1,8 @@
+package com.bcsg.exception;
+
+public class InvalidBankException extends Exception {
+
+    public InvalidBankException(String message) {
+        super(message);
+    }
+}
