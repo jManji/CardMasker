@@ -1,10 +1,10 @@
 package com.bcsg.card;
 
 import static com.bcsg.constants.Constants.SEPARATOR;
+import static com.bcsg.constants.Constants.DATE_FORMAT;
 import static com.bcsg.constants.Constants.BankName.AMEX;
 import static com.bcsg.constants.Constants.BankName.HSBCCA;
 import static com.bcsg.constants.Constants.BankName.RBC;
-import static com.bcsg.constants.Constants.DATE_FORMAT;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -60,9 +60,9 @@ public class CardFactory {
      * @param number      Card number
      * @param expiryDate  Expiration date
      * @return  The card
-     * @throws ParseException
-     * @throws CardNumberException
-     * @throws InvalidBankException 
+     * @throws  ParseException
+     * @throws  CardNumberException
+     * @throws  InvalidBankException 
      */
     public static Card createCard(String bank,
                                   String number,
@@ -105,7 +105,7 @@ public class CardFactory {
             card.setComponents(new FifteenDigitsWithDashesValidator(),
                                new ShowLastThreeMasker());
         } else {
-            throw new InvalidBankException("Bank " + bank + " is not a valid bank");
+            throw new InvalidBankException("Bank " + bank + " is not a valid bank name");
         }
         
         return card;
